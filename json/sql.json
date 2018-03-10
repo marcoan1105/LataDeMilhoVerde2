@@ -2,6 +2,19 @@
   {
     "method": "get",
     "url": "/getClients/{id}",
-    "sql": "select * from clients where id = :id limit 2"
+    "sql": "select * from clients where id = :id limit 2",
+    "type": "get"
+  },
+  {
+    "method": "post",
+    "url": "/getClients/{id}",
+    "sql": "update clients set name = :name where id = :id",
+    "type": "set"
+  },
+  {
+    "method": "put",
+    "url": "/getClients",
+    "sql": "insert into clients(name) values(:name)",
+    "type": "set"
   }
 ]

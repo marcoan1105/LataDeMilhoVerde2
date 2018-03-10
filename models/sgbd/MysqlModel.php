@@ -46,8 +46,15 @@ Class MysqlModel implements Connection{
             self::$sql = null;
             if(!$result){
                 return $command->errorInfo();
+            }else{
+                $id = self::$connection->lastInsertId();
+
+                if($id == "0"){
+                    return $result;
+                }else{
+                    return $id;
+                }
             }
-            return $result;
         }catch(PDOException $e){
             throw new PDOException('Get in mysql error');
         }finally{
@@ -129,7 +136,7 @@ Class MysqlModel implements Connection{
     //CONNECTION MYSQL
     protected static function mysqlConnection($data){
         if(self::$connection == null){
-            self::$connection = new PDO("mysql:host=localhost;dbname=teste", "root", "123456");
+            self::$connection = new PDO("mysql:host={$data->host};dbname={$data->database}", $data->username, $data->password);
         }
     }
 

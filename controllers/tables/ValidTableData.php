@@ -45,7 +45,7 @@ class ValidTableData{
     public static function changeParams($url, $params){
 
         foreach($params as $key => $now){
-            $url = str_replace(":".$key, $now, $url);
+            $url = str_replace(":".$key, "'".$now."'", $url);
         }
 
         return $url;

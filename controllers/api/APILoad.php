@@ -59,21 +59,29 @@ class APILoad
 
                 foreach($jsonSql as $nowSql){
                     if($nowSql->url == $pattern){
-                        if($nowSql->method = $method){
+                        if($nowSql->method == $method){
                             if($method == "put" || $method == "post"){
                                 $body = $request->getBody();
 
                                 if($body != ""){
                                     $body = json_decode($body, true);
 
-                                    array_merge($tokensPath, $body);
+                                    $tokensPath = array_merge($tokensPath, $body);
                                 }
                             }
-                            
+
                             $sql = ValidTableData::changeParams($nowSql->sql,  $tokensPath);
                             $connection = DatabaseConnection::getConnection();
                             $connection::query($sql);
-                            $result = $connection::get();
+
+                            $result = "";
+                            
+                            if($nowSql->type == "get"){
+                                $result = $connection::get();    
+                            }else{
+                                $result = $connection::set();
+                            }
+                            
 
                             return $response->withJSON(
                                 self::formatReturn(true, $result),
