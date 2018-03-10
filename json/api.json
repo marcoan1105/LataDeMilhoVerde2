@@ -1,0 +1,18 @@
+{
+  "connection": {
+    "type": "mysql",
+    "data": {
+      "host": "localhost",
+      "user": "root",
+      "password": "123456",
+      "database": "teste"
+    }
+  },
+  "tables": {
+    "clients": {
+      "config": {
+        "primary": "id"
+      }
+    }
+  }
+}

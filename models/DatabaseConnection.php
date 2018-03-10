@@ -3,11 +3,12 @@ namespace LataDeMilhoVerde;
 
 use LataDeMilhoVerde\Database;
 use LataDeMilhoVerde\MysqlModel;
+use LataDeMilhoVerde\Config;
 
 class DatabaseConnection
 {
     public static function getConnection(){
-        $fileApi = file_get_contents('config/api.json');
+        $fileApi = file_get_contents(Config::getFileApiJson());
 
         $api= json_decode($fileApi);
 

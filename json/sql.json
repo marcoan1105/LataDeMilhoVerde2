@@ -1,0 +1,7 @@
+[
+  {
+    "method": "get",
+    "url": "/getClients/{id}",
+    "sql": "select * from clients where id = :id limit 2"
+  }
+]
